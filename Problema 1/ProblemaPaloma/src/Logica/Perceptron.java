@@ -43,16 +43,17 @@ public class Perceptron {
             salidas[7] = -1;//8
         
         //definir los pesos de las entradas y el bias
-        double w0 = new Random().nextDouble(); //peso del bias
-        double w1 = new Random().nextDouble(); //peso de X1
-        double w2 = new Random().nextDouble(); //peso de X2
-        double w3 = new Random().nextDouble(); // peso de X3
+        double w0 = new Random().nextDouble()*2 -1; //peso del bias
+        double w1 = new Random().nextDouble()*2 -1; //peso de X1
+        double w2 = new Random().nextDouble()*2 -1; //peso de X2
+        double w3 = new Random().nextDouble()*2 -1; // peso de X3
         
         //se definen las variables auxiliares y del proceso
-        double y = 0.0;
-        double error = 0.0;
+        double y = 0f;
+        double error = 0f;
         int fila = 0;
         int iteracion = 1;
+        int maxima_iteracion = 5;
         
         
         //Depuracion
@@ -62,13 +63,14 @@ public class Perceptron {
             System.out.println("Peso x1: "+w1);
             System.out.println("Peso x2: "+w2);
             System.out.println("Peso x3: "+w3);
+            System.out.println("");
             System.out.println("Iteracion: "+iteracion);
-
+            
         
     
         //calculo de la salida parcial
         
-        while(fila<8){
+        while(iteracion < maxima_iteracion && fila<8){
             //depuracion
             System.out.println("y =("+w0+"*"+entradas [fila][0]+") + ("+w1+"*"+entradas [fila] [1]+") + "
                     + "("+w2+"*"+entradas[fila][2]+") + ("+w3+"*"+entradas [fila][3]+")");
@@ -92,7 +94,7 @@ public class Perceptron {
             error = salidas[fila] - y;
             
             System.out.println("Error= "+error);
-            
+            System.out.println("");
             //recalcular los pesos o no, dependiendo el error
             
             //si no hay error, no se recalcula
@@ -110,9 +112,9 @@ public class Perceptron {
                     w2=w2+(error*entradas[fila][2]); //peso x2
                     w3=w3+(error*entradas[fila][3]); //peso x3
                         //formula del video
-                //    w0=w0+(error*entradas[fila][0]); //peso del bias
+                    w0=w0+(error*entradas[fila][0]); //peso del bias
                     //formula de Ospina
-                w0=w0+error; //peso del bias
+                //w0=w0+error; //peso del bias
                     
                     //pesos actualizados
                     System.out.println("Nuevo peso de x1: "+w1);
@@ -138,6 +140,7 @@ public class Perceptron {
         System.out.println("Peso bias: "+w0);
         
         //comprobación que las entradas ingresadas cumplan con la tabla NAND
+    /*
         
         Scanner in = new Scanner(System.in);
         int entrada1 = 0,entrada2 = 0, entrada3 = 0;
@@ -152,8 +155,8 @@ public class Perceptron {
         entrada3 = in.nextInt();
         
         //no es necesario el producto del bias
-//        y= w0+(w1*entrada1)+(w2*entrada2)+(w3*entrada3)
-        y = (w0*1)+(w1*entrada1)+(w2*entrada2)+(w3*entrada3);
+        y= w0+(w1*entrada1)+(w2*entrada2)+(w3*entrada3);
+//        y = (w0*1)+(w1*entrada1)+(w2*entrada2)+(w3*entrada3);
         
         if(y >= 0)
         {
@@ -164,6 +167,6 @@ public class Perceptron {
         
         System.out.println("La salida es: \n"+
                 y);
-        
+     */   
     }
 }
