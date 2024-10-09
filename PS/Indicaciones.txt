@@ -1,0 +1,3 @@
+Se debe tener instalada la librería numpy, y matplotlib para que pueda funcionar
+
+Las gráficas se generan al ejecutar el código, y el valor de los pesos en la consola.
